@@ -7,19 +7,23 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("User signed in");
       console.log("User signed in");
       navigate("/profile");
     } catch (error) {
-      alert("Error signin in: ", error);
+      console.error("Error signing in: ", error);
+      setError(error.message);
     }
   };
+
+  /* */
 
   return (
     <div>
@@ -68,6 +72,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

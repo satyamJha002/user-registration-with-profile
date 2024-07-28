@@ -207,6 +207,7 @@ const RegisterForm = () => {
               </div>
             )}
           </div>
+
           <button
             type="submit"
             className="flex justify-center items-center gap-2 w-full bg-gradient-to-tr from-black to-gray-500 text-white font-inter py-2 rounded-lg"
